@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backtest Results</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f7f6;
+            padding: 30px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+        .table {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center">Backtesting Dashboard</h1>
+
+        <div class="form-container">
+            <form action="/run_backtest" method="POST">
+                <div class="form-group">
+                    <label for="expiry_date">Expiry Date (YYYY-MM-DD):</label>
+                    <input type="date" class="form-control" id="expiry_date" name="expiry_date" value="2025-02-20" required>
+                </div>
+                <div class="form-group">
+                    <label for="from_date">Start Date (YYYY-MM-DD):</label>
+                    <input type="date" class="form-control" id="from_date" name="from_date" value="2025-02-13" required>
+                </div>
+                <div class="form-group">
+                    <label for="to_date">End Date (YYYY-MM-DD):</label>
+                    <input type="date" class="form-control" id="to_date" name="to_date" value="2025-02-16" required>
+                </div>
+                <div class="form-group">
+                    <label for="angle_threshold">Angle Threshold:</label>
+                    <input type="number" step="0.1" class="form-control" id="angle_threshold" name="angle_threshold" value="15.0" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Run Backtest</button>
+            </form>
+        </div>
+
+        {% if results %}
+        <h2 class="text-center">Backtest Results</h2>
+        <div class="table-responsive">
+            {{ results|safe }}
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
