@@ -121,7 +121,7 @@ class UpstoxBacktest:
 
         # **New Dynamic Price Retest Condition (Price within ±10 to ±15 points of EMA9)**
         lower_bound = row['EMA9'] - 10
-        upper_bound = row['EMA9'] + 5
+        upper_bound = row['EMA9'] + 10
         if not (lower_bound <= row['close'] <= upper_bound):
             return None
 
